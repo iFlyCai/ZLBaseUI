@@ -22,8 +22,6 @@
 
 #import "ZLBaseViewModel.h"
 
-#import "ZLBaseObject.h"
-
 #pragma mark - Scale
 
 #define ZLScreenScale       [UIScreen mainScreen].scale

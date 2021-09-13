@@ -1,6 +1,6 @@
 {
   "name": "ZLBaseUI",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "summary": "A short description of ZLBaseUI.",
   "description": "ZLBaseUI",
   "homepage": "https://github.com/ExistOrLive/ZLBaseUI",
@@ -13,10 +13,10 @@
   },
   "source": {
     "git": "https://github.com/ExistOrLive/ZLBaseUI.git",
-    "tag": "1.1.0"
+    "tag": "1.2.0"
   },
   "platforms": {
-    "ios": "9.0"
+    "ios": "11.0"
   },
   "source_files": "ZLBaseUI/Classes/**/*",
   "dependencies": {

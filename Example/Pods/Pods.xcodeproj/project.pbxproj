@@ -733,36 +733,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1EAC901FF4AA271DD71AEF8777A6E58F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 78A71C269B76EA88464F8F5093754D50 /* ZLBaseUI.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ZLBaseUI/ZLBaseUI-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ZLBaseUI/ZLBaseUI-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/ZLBaseUI/ZLBaseUI.modulemap";
-				PRODUCT_MODULE_NAME = ZLBaseUI;
-				PRODUCT_NAME = ZLBaseUI;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		243F6EE4185161C0D54949C10984673D /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 52B833152B6FB237925BE5197549F9DE /* Pods-ZLBaseUI_Tests.release.xcconfig */;
@@ -895,6 +865,69 @@
 			};
 			name = Release;
 		};
+		50912F476872EC4B94BE7553DA5AD4BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78A71C269B76EA88464F8F5093754D50 /* ZLBaseUI.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ZLBaseUI/ZLBaseUI-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ZLBaseUI/ZLBaseUI-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ZLBaseUI/ZLBaseUI.modulemap";
+				PRODUCT_MODULE_NAME = ZLBaseUI;
+				PRODUCT_NAME = ZLBaseUI;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		56AE1468898562D587C821F95C761E0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D3F9860A6F3078AD1B3B78635E65570 /* ZLBaseUI.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ZLBaseUI/ZLBaseUI-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ZLBaseUI/ZLBaseUI-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ZLBaseUI/ZLBaseUI.modulemap";
+				PRODUCT_MODULE_NAME = ZLBaseUI;
+				PRODUCT_NAME = ZLBaseUI;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		69AF5AF0C5513AD02D486F91AD26F2C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 62E2BEE70289F97314401AC094BE1DD8 /* Pods-ZLBaseUI_Tests.debug.xcconfig */;
@@ -989,37 +1022,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		A968F8B7AF7D0416296E92FE13847698 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D3F9860A6F3078AD1B3B78635E65570 /* ZLBaseUI.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ZLBaseUI/ZLBaseUI-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ZLBaseUI/ZLBaseUI-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/ZLBaseUI/ZLBaseUI.modulemap";
-				PRODUCT_MODULE_NAME = ZLBaseUI;
-				PRODUCT_NAME = ZLBaseUI;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		C437DB9E31D4D0C9067317F7DDA15949 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1146,8 +1148,8 @@
 		2FC8BE3A8F9F4698D116FB81CA608F15 /* Build configuration list for PBXNativeTarget "ZLBaseUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1EAC901FF4AA271DD71AEF8777A6E58F /* Debug */,
-				A968F8B7AF7D0416296E92FE13847698 /* Release */,
+				50912F476872EC4B94BE7553DA5AD4BD /* Debug */,
+				56AE1468898562D587C821F95C761E0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
