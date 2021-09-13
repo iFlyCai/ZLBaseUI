@@ -1,0 +1,23 @@
+PODS:
+  - Masonry (1.1.0)
+  - ZLBaseUI (1.1.0):
+    - Masonry
+
+DEPENDENCIES:
+  - ZLBaseUI (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Masonry
+
+EXTERNAL SOURCES:
+  ZLBaseUI:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  ZLBaseUI: ca29834cc54d4a5e4a71e4a1f81f73d8025564bb
+
+PODFILE CHECKSUM: 969eef9e4d5c9ed0420ec09c42ddfd86fd308563
+
+COCOAPODS: 1.11.0
