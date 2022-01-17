@@ -10,6 +10,8 @@
 
 @interface ZLBaseNavigationController : UINavigationController
 
+@property(nonatomic, strong, readonly) UIPanGestureRecognizer* zlInteractivePopGestureRecognizer;
+
 @property(nonatomic, assign) BOOL forbidGestureBack;
 
 @end

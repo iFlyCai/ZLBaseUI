@@ -29,6 +29,11 @@
 }
 
 
+- (UIPanGestureRecognizer *) zlInteractivePopGestureRecognizer {
+    return _ScreenEdgePanGestureRecognizer;
+}
+
+
 #pragma mark - 右滑手势支持
 
 - (void) setUpCustomPopGestureRecognizer
