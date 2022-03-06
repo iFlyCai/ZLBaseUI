@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZLBaseViewModel.h"
+
 @class ZLBaseNavigationBar;
 
 @interface ZLBaseViewController : UIViewController <ZLBaseViewModel>
@@ -27,6 +28,9 @@
 
 - (void) onBackButtonClicked:(UIButton *) button;
 
+
+
+#pragma mark - 
 
 @end
 

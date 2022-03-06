@@ -7,6 +7,8 @@
 //
 
 #import "ZLBaseViewController.h"
+#import "ZLBaseViewController+Notification.h"
+#import "ZLKeyboardNotificationPayload.h"
 
 #import "ZLBaseUIConfig.h"
 
@@ -52,10 +54,12 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:YES];
-    
+
     for(ZLBaseViewModel *viewModel in self.realSubViewModels){
         [viewModel VCLifeCycle_viewWillAppear];
     }
+
+    [self _registerNotificationWhenViewWillAppear];
 }
 
 - (void) viewDidAppear:(BOOL)animated{
@@ -72,6 +76,8 @@
     for(ZLBaseViewModel *viewModel in self.realSubViewModels){
         [viewModel VCLifeCycle_viewWillDisappear];
     }
+    
+    
 }
 
 - (void) viewDidDisappear:(BOOL)animated{
@@ -79,6 +85,7 @@
     for(ZLBaseViewModel *viewModel in self.realSubViewModels){
         [viewModel VCLifeCycle_viewDidDisappear];
     }
+    [self _unregisterNotificationWhenViewDidDisappear];
 }
 
 - (void)didReceiveMemoryWarning{
@@ -269,5 +276,189 @@
      * 父viewModel 处理event
      **/
 }
+
+#pragma mark - Notification
+
+- (void) _registerNotificationWhenViewWillAppear {
+    
+    // application
+    if([self watchApplicationStatusNotification]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(_onNotificaitonArrived:)
+                                                     name:UIApplicationDidBecomeActiveNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(_onNotificaitonArrived:)
+                                                     name:UIApplicationDidEnterBackgroundNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(_onNotificaitonArrived:)
+                                                     name:UIApplicationWillResignActiveNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(_onNotificaitonArrived:)
+                                                     name:UIApplicationWillEnterForegroundNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(_onNotificaitonArrived:)
+                                                     name:UIApplicationWillTerminateNotification
+                                                   object:nil];
+    }
+  
+    // keyboard
+    if([self watchKeyboardStatusNotification]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(_onNotificaitonArrived:)
+                                                     name:UIKeyboardDidChangeFrameNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(_onNotificaitonArrived:)
+                                                     name:UIKeyboardWillChangeFrameNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(_onNotificaitonArrived:)
+                                                     name:UIKeyboardWillShowNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(_onNotificaitonArrived:)
+                                                     name:UIKeyboardDidShowNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(_onNotificaitonArrived:)
+                                                     name:UIKeyboardWillHideNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(_onNotificaitonArrived:)
+                                                     name:UIKeyboardDidHideNotification
+                                                   object:nil];
+    }
+}
+
+- (void) _unregisterNotificationWhenViewDidDisappear {
+    
+    // application
+    if([self watchKeyboardStatusNotification]) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIApplicationDidBecomeActiveNotification
+                                                      object:nil];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIApplicationDidEnterBackgroundNotification
+                                                      object:nil];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIApplicationWillResignActiveNotification
+                                                      object:nil];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIApplicationWillEnterForegroundNotification
+                                                      object:nil];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIApplicationWillTerminateNotification
+                                                      object:nil];
+    }
+    
+    // keyboard
+    if([self watchKeyboardStatusNotification]) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardDidChangeFrameNotification
+                                                      object:nil];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardWillChangeFrameNotification
+                                                      object:nil];
+
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardWillShowNotification
+                                                      object:nil];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardDidShowNotification
+                                                      object:nil];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardWillHideNotification
+                                                      object:nil];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardDidHideNotification
+                                                      object:nil];
+    }
+    
+}
+
+
+- (void) _onNotificaitonArrived:(NSNotification *) notification {
+    
+    // KeyBoard
+    if (notification.name == UIKeyboardDidChangeFrameNotification ||
+        notification.name == UIKeyboardWillChangeFrameNotification ||
+        notification.name == UIKeyboardWillShowNotification ||
+        notification.name == UIKeyboardDidShowNotification ||
+        notification.name == UIKeyboardWillHideNotification ||
+        notification.name == UIKeyboardDidHideNotification )  {
+        CGRect beginFrame;
+        CGRect endFrame;
+        double duration;
+        UIViewAnimationCurve curve;
+        
+        NSValue *beginFrameValue = [[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey];
+        NSValue *endFrameValue = [[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey];
+        NSNumber *durationValue = [[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+        NSNumber *curveValue = [[notification userInfo] objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+        
+        [beginFrameValue getValue:&beginFrame size:sizeof(CGRect)];
+        [endFrameValue getValue:&endFrame size:sizeof(CGRect)];
+        duration = [durationValue doubleValue];
+        curve = (UIViewAnimationCurve) [curveValue integerValue];
+        ZLKeyboardNotificationPayload *payload = [[ZLKeyboardNotificationPayload alloc] init];
+    
+        payload.beginFrame = beginFrame;
+        payload.endFrame = endFrame;
+        payload.curve = curve;
+        payload.duration = duration;
+        
+        if (notification.name == UIKeyboardDidChangeFrameNotification) {
+            [self keyboardDidChangeFrame:payload];
+        } else if (notification.name == UIKeyboardWillChangeFrameNotification) {
+            [self keyboardWillChangeFrame:payload];
+        } else if (notification.name == UIKeyboardWillShowNotification) {
+            [self keyboardWillShow:payload];
+        } else if (notification.name == UIKeyboardDidShowNotification) {
+            [self keyboardDidShow:payload];
+        } else if (notification.name == UIKeyboardWillHideNotification) {
+            [self keyboardWillHide:payload];
+        } else if (notification.name == UIKeyboardDidHideNotification) {
+            [self keyboardDidHide:payload];
+        }
+    }
+    
+    // application
+    if (notification.name == UIApplicationDidBecomeActiveNotification) {
+        [self applicationDidBecomeActive];
+    } else if (notification.name == UIApplicationDidEnterBackgroundNotification) {
+        [self applicationDidEnterBackground];
+    } else if (notification.name == UIApplicationWillResignActiveNotification) {
+        [self applicationWillResignActive];
+    } else if (notification.name == UIApplicationWillEnterForegroundNotification) {
+        [self applicationWillEnterForeground];
+    } else if (notification.name == UIApplicationWillTerminateNotification) {
+        [self applicationWillTerminate];
+    }
+    
+}
+
+
+
+
 @end
 
