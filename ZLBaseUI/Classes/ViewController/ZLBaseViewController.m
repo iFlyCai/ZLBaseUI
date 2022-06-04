@@ -152,8 +152,8 @@
 
 - (void) setTitle:(NSString *)title
 {
-    if(title.length > 20) {
-        title = [title substringToIndex:20];
+    if(title.length > 80) {
+        title = [title substringToIndex:80];
     }
     [super setTitle:title];
     [self.zlNavigationBar.titleLabel setText:title];
