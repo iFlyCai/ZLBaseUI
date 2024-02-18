@@ -30,7 +30,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) removeSubViewModel:(ZLBaseViewModel *) subViewModel;
 
+- (void) removeAllSubViewModels; 
+
 - (void) removeFromSuperViewModel;
+
+
 
 /**
  * 绑定 viewModel,View,model, 由superViewModel或者VC调用

@@ -81,6 +81,13 @@
     }
 }
 
+- (void) removeAllSubViewModels {
+    for(ZLBaseViewModel * subViewModel in _realSubViewModels) {
+        subViewModel.realSuperViewModel = nil;
+    }
+    [_realSubViewModels removeAllObjects];
+}
+
 /**
  * 解除与父ViewModel之间的关系
  */
@@ -88,6 +95,8 @@
     id<ZLBaseViewModel>  superViewModel = [self superViewModel];
     [superViewModel removeSubViewModel:self];
 }
+
+
 
 /**
  * 绑定 viewModel,View,model, 由superViewModel或者VC调用

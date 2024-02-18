@@ -243,6 +243,13 @@
 
 }
 
+- (void) removeAllSubViewModels {
+    for(ZLBaseViewModel * subViewModel in _realSubViewModels) {
+        [subViewModel setValue:nil forKey:@"realSuperViewModel"];
+    }
+    [_realSubViewModels removeAllObjects];
+}
+
 /**
  * UIViewController 不需要
  */
