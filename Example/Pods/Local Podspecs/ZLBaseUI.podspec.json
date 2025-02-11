@@ -1,6 +1,6 @@
 {
   "name": "ZLBaseUI",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "summary": "A short description of ZLBaseUI.",
   "description": "ZLBaseUI",
   "homepage": "https://github.com/iFlyCai/ZLBaseUI",
@@ -13,10 +13,20 @@
   },
   "source": {
     "git": "https://github.com/iFlyCai/ZLBaseUI.git",
-    "tag": "1.2.5"
+    "tag": "1.2.6"
   },
   "platforms": {
     "ios": "15.6"
   },
-  "source_files": "ZLBaseUI/Classes/**/*"
+  "source_files": "ZLBaseUI/Classes/**/*",
+  "resource_bundles": {
+    "ZLBaseUI": [
+      "ZLBaseUI/Assets/*.png"
+    ]
+  },
+  "dependencies": {
+    "RTRootNavigationController": [
+      "~> 0.8.1"
+    ]
+  }
 }

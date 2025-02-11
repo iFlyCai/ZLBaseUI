@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ZLBaseUI'
-  s.version          = '1.2.5'
+  s.version          = '1.2.6'
   s.summary          = 'A short description of ZLBaseUI.'
 
 # This description is used to generate tags and improve search results.
@@ -30,10 +30,12 @@ Pod::Spec.new do |s|
 
   s.source_files = 'ZLBaseUI/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'ZLBaseUI' => ['ZLBaseUI/Assets/*.png']
-  # }
+   s.resource_bundles = {
+     'ZLBaseUI' => ['ZLBaseUI/Assets/*.png']
+   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
+  # 依赖库
+  s.dependency 'RTRootNavigationController', '~> 0.8.1'
 end

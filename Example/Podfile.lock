@@ -1,15 +1,24 @@
 PODS:
-  - ZLBaseUI (1.2.5)
+  - RTRootNavigationController (0.8.1):
+    - RTRootNavigationController/Core (= 0.8.1)
+  - RTRootNavigationController/Core (0.8.1)
+  - ZLBaseUI (1.2.6):
+    - RTRootNavigationController (~> 0.8.1)
 
 DEPENDENCIES:
   - ZLBaseUI (from `../`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - RTRootNavigationController
 
 EXTERNAL SOURCES:
   ZLBaseUI:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ZLBaseUI: 04d96ce5112d3a1d924fe4418204d467be5917b2
+  RTRootNavigationController: ca443783baf6ff65a70c4d21ce0eedbbc1fec1fe
+  ZLBaseUI: be6207aa0253e9e48fc5dd8ff0b51341ab157dad
 
 PODFILE CHECKSUM: 40bcbf8c63fe51eff30f85701900fbf9816e2483
 

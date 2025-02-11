@@ -9,28 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "ZLBaseViewModel.h"
 
-@class ZLBaseNavigationBar;
-
 @interface ZLBaseViewController : UIViewController <ZLBaseViewModel>
 
-#pragma mark -
 
-// 导航栏
-@property(nonatomic, strong) ZLBaseNavigationBar * zlNavigationBar;
-
-// contentView
-@property(nonatomic, strong) UIView * contentView;
-
-
-#pragma mark - 设置Navigation Bar
-
-- (void) setZLNavigationBarHidden:(BOOL)hidden;
-
-- (void) onBackButtonClicked:(UIButton *) button;
-
-
-
-#pragma mark - 
+@property (nonatomic, assign) BOOL isDebug; // 添加 isDebug 属性
 
 @end
 

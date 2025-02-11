@@ -7,7 +7,8 @@
 //
 
 @import UIKit;
+@import ZLBaseUI;
 
-@interface ZLViewController : UIViewController
+@interface ZLViewController : ZLBaseViewController
 
 @end

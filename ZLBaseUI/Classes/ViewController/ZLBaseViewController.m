@@ -13,6 +13,7 @@
 #import "ZLBaseViewModel.h"
 #import <objc/Runtime.h>
 #import <objc/message.h>
+#import <RTRootNavigationController/RTRootNavigationController.h>
 
 
 @interface ZLBaseViewController ()
@@ -22,6 +23,9 @@
 @end
 
 @implementation ZLBaseViewController
+
+
+#pragma mark -- initial方法
 
 - (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]){
@@ -37,28 +41,25 @@
     return self;
 }
 
+#pragma mark -- 生命周期方法
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
+    self.isDebug = YES;
     // 初始化UI
     [self setBaseUpUI];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
     [self.navigationController setNavigationBarHidden:YES];
-
     for(ZLBaseViewModel *viewModel in self.realSubViewModels){
         [viewModel VCLifeCycle_viewWillAppear];
     }
-
     [self _registerNotificationWhenViewWillAppear];
 }
 
 - (void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-
     for(ZLBaseViewModel *viewModel in self.realSubViewModels){
         [viewModel VCLifeCycle_viewDidAppear];
     }
@@ -66,12 +67,9 @@
 
 - (void) viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    
     for(ZLBaseViewModel *viewModel in self.realSubViewModels){
         [viewModel VCLifeCycle_viewWillDisappear];
     }
-    
-    
 }
 
 - (void) viewDidDisappear:(BOOL)animated{
@@ -84,55 +82,53 @@
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
-
     for(ZLBaseViewModel *viewModel in self.realSubViewModels){
         [viewModel VCLifeCycle_didReceiveMemoryWarning];
     }
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator{
-    
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];    
-}
-
 
 #pragma mark - 初始化UI
+- (UIBarButtonItem *)rt_customBackItemWithTarget:(id)target action:(SEL)action {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    // 获取当前的用户界面风格
+    UIUserInterfaceStyle style = self.traitCollection.userInterfaceStyle;
+    NSString *imageName = (style == UIUserInterfaceStyleDark) ? @"back_button_dark" : @"back_button_light";
 
+    // 获取资源 Bundle
+    NSBundle *bundle = [NSBundle bundleForClass:[ZLBaseViewController class]];
+    NSURL *resourceBundleURL = [bundle URLForResource:@"ZLBaseUI" withExtension:@"bundle"];
+    
+    if (!resourceBundleURL) {
+        [self debugLog:@"⚠️ 未找到 ZLBaseUI.bundle，在 Framework Bundle 中查找失败"];
+        return nil;
+    }
+
+    NSBundle *resourceBundle = [NSBundle bundleWithURL:resourceBundleURL];
+    if (!resourceBundle) {
+        [self debugLog:@"⚠️ 无法加载 ZLBaseUI.bundle"];
+        return nil;
+    }
+
+    // 从资源 Bundle 加载图片
+    UIImage *image = [UIImage imageNamed:imageName inBundle:resourceBundle compatibleWithTraitCollection:self.traitCollection];
+
+    if (image) {
+        [self debugLog:[NSString stringWithFormat:@"✅ 成功加载图片：%@", imageName]];
+        [button setImage:image forState:UIControlStateNormal];
+    } else {
+        [self debugLog:[NSString stringWithFormat:@"❌ 无法加载图片：%@（请检查 ZLBaseUI.bundle 是否正确包含该资源）", imageName]];
+    }
+
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    [button sizeToFit];
+
+    return [[UIBarButtonItem alloc] initWithCustomView:button];
+}
 - (void) setBaseUpUI{
-    
     self.view.backgroundColor = [ZLBaseUIConfig sharedInstance].viewControllerBackgoundColor;
-    [self setUpCustomNavigationbar];
 }
-
-
-#pragma mark - 设置Navigation Bar
-// 这里不使用系统的UINavigationBar，自定义导航栏
-- (void) setUpCustomNavigationbar{
-    
-}
-
-- (void) setTitle:(NSString *)title{
-}
-
-
-- (void) setZLNavigationBarHidden:(BOOL)hidden
-{
-}
-
-- (void) onBackButtonClicked:(UIButton *) button
-{
-    if(self.navigationController)
-    {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    else
-    {
-        [self dismissViewControllerAnimated:YES completion:^{}];
-    }
-}
-
 #pragma mark - ZLBaseViewModel
-
 - (ZLBaseViewController *) viewController{
     return self;
 }
@@ -145,14 +141,11 @@
     return [_realSubViewModels allObjects];
 }
 
-
-
 /**
  * 添加子viewModel， 建立父子关系
  * @param subViewModel        子viewModel
  **/
-- (void) addSubViewModel:(ZLBaseViewModel *) subViewModel
-{
+- (void) addSubViewModel:(ZLBaseViewModel *) subViewModel{
     if(!subViewModel){
         return;
     }
@@ -160,10 +153,8 @@
     [self.realSubViewModels addObject:subViewModel];
 }
 
-- (void) addSubViewModels:(NSArray<ZLBaseViewModel *> *) subViewModels
-{
-    if(!subViewModels)
-    {
+- (void) addSubViewModels:(NSArray<ZLBaseViewModel *> *) subViewModels{
+    if(!subViewModels){
         return;
     }
     [subViewModels setValue:self forKey:@"realSuperViewModel"];
@@ -178,7 +169,6 @@
         [subViewModel setValue:nil forKey:@"realSuperViewModel"];
         [self.realSubViewModels removeObject:subViewModel];
     }
-
 }
 
 - (void) removeAllSubViewModels {
@@ -200,8 +190,7 @@
  * @param targetModel           model
  * @param targetView         view
  **/
-- (void) bindModel:(id) targetModel andView:(UIView *) targetView
-{
+- (void) bindModel:(id) targetModel andView:(UIView *) targetView{
     /**
      * code
      * 绑定 viewModel,View,model
@@ -217,8 +206,7 @@
  * @param event             事件内容
  * @param subViewModel      子viewModel
  **/
-- (void) getEvent:(id)event  fromSubViewModel:(ZLBaseViewModel *) subViewModel
-{
+- (void) getEvent:(id)event  fromSubViewModel:(ZLBaseViewModel *) subViewModel{
     /**
      * code
      * 父viewModel 处理event
@@ -228,7 +216,6 @@
 #pragma mark - Notification
 
 - (void) _registerNotificationWhenViewWillAppear {
-    
     // application
     if([self watchApplicationStatusNotification]) {
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -341,7 +328,6 @@
                                                         name:UIKeyboardDidHideNotification
                                                       object:nil];
     }
-    
 }
 
 
@@ -406,7 +392,13 @@
 }
 
 
-
+#pragma mark - Debug Log
+/// 仅在 isDebug = YES 时输出日志
+- (void)debugLog:(NSString *)message {
+    if (self.isDebug) {
+        NSLog(@"%@", message);
+    }
+}
 
 @end
 

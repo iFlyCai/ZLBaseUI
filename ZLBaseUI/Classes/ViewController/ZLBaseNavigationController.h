@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <RTRootNavigationController/RTRootNavigationController.h>
 
-@interface ZLBaseNavigationController : UINavigationController
-
-@property(nonatomic, strong, readonly) UIPanGestureRecognizer* zlInteractivePopGestureRecognizer;
-
-@property(nonatomic, assign) BOOL forbidGestureBack;
+@interface ZLBaseNavigationController : RTRootNavigationController
 
 @end

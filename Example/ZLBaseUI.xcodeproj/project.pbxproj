@@ -22,6 +22,7 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		AAD827AE2D5BCFF5007C7706 /* ZLFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD827AD2D5BCFF5007C7706 /* ZLFirstViewController.m */; };
 		B0874B75558B9C51E801D768 /* Pods_ZLBaseUI_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9BD0AB3E02E9E2794E0FC30 /* Pods_ZLBaseUI_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,8 @@
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A7440CEB4AFAAF4225674B80 /* Pods-ZLBaseUI_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZLBaseUI_Example.release.xcconfig"; path = "Target Support Files/Pods-ZLBaseUI_Example/Pods-ZLBaseUI_Example.release.xcconfig"; sourceTree = "<group>"; };
+		AAD827AC2D5BCFF5007C7706 /* ZLFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLFirstViewController.h; sourceTree = "<group>"; };
+		AAD827AD2D5BCFF5007C7706 /* ZLFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLFirstViewController.m; sourceTree = "<group>"; };
 		C9BD0AB3E02E9E2794E0FC30 /* Pods_ZLBaseUI_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZLBaseUI_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3E34C49B448AAD812E02DB4 /* Pods-ZLBaseUI_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZLBaseUI_Example.debug.xcconfig"; path = "Target Support Files/Pods-ZLBaseUI_Example/Pods-ZLBaseUI_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		F86564D3646F309A5215E8B8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -143,6 +146,8 @@
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				AAD827AC2D5BCFF5007C7706 /* ZLFirstViewController.h */,
+				AAD827AD2D5BCFF5007C7706 /* ZLFirstViewController.m */,
 			);
 			name = "Example for ZLBaseUI";
 			path = ZLBaseUI;
@@ -315,10 +320,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ZLBaseUI_Example/Pods-ZLBaseUI_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RTRootNavigationController/RTRootNavigationController.framework",
 				"${BUILT_PRODUCTS_DIR}/ZLBaseUI/ZLBaseUI.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RTRootNavigationController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZLBaseUI.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +343,7 @@
 				6003F59E195388D20070C39A /* ZLAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* ZLViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				AAD827AE2D5BCFF5007C7706 /* ZLFirstViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
