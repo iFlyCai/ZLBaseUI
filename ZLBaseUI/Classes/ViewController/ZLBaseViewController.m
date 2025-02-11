@@ -9,17 +9,11 @@
 #import "ZLBaseViewController.h"
 #import "ZLBaseViewController+Notification.h"
 #import "ZLKeyboardNotificationPayload.h"
-
 #import "ZLBaseUIConfig.h"
-
-#import "ZLBaseNavigationBar.h"
-
 #import "ZLBaseViewModel.h"
-
 #import <objc/Runtime.h>
 #import <objc/message.h>
 
-#import <Masonry/Masonry.h>
 
 @interface ZLBaseViewController ()
     
@@ -98,9 +92,7 @@
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator{
     
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    
-    [self.zlNavigationBar setNeedsUpdateConstraints];
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];    
 }
 
 
@@ -109,10 +101,7 @@
 - (void) setBaseUpUI{
     
     self.view.backgroundColor = [ZLBaseUIConfig sharedInstance].viewControllerBackgoundColor;
-    
     [self setUpCustomNavigationbar];
-    
-    [self setUpContentView];
 }
 
 
@@ -120,49 +109,14 @@
 // 这里不使用系统的UINavigationBar，自定义导航栏
 - (void) setUpCustomNavigationbar{
     
-    self.zlNavigationBar = [[ZLBaseNavigationBar alloc] init];
-    [self.view addSubview:self.zlNavigationBar];
-    [self.zlNavigationBar.backButton addTarget:self action:@selector(onBackButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.zlNavigationBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.mas_top);
-        make.left.equalTo(self.view.mas_left);
-        make.right.equalTo(self.view.mas_right);
-        make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset([ZLBaseUIConfig sharedInstance].navigationBarHeight);
-    }];
-    
-    if(self.navigationController == nil)   // 如果是model弹出
-    {
-        [self.zlNavigationBar setZlNavigationBarHidden:YES];
-    }
-    else
-    {
-        NSArray * controllers = self.navigationController.viewControllers;
-        
-        if(controllers.firstObject == self)  // 如果是UINavigationController的根VC
-        {
-            [self.zlNavigationBar.backButton setHidden:YES];
-        }
-        else
-        {
-            [self.zlNavigationBar.backButton setHidden:NO];
-        }
-    }
 }
 
-- (void) setTitle:(NSString *)title
-{
-    if(title.length > 80) {
-        title = [title substringToIndex:80];
-    }
-    [super setTitle:title];
-    [self.zlNavigationBar.titleLabel setText:title];
+- (void) setTitle:(NSString *)title{
 }
 
 
 - (void) setZLNavigationBarHidden:(BOOL)hidden
 {
-    [self.zlNavigationBar setZlNavigationBarHidden:hidden];
 }
 
 - (void) onBackButtonClicked:(UIButton *) button
@@ -176,22 +130,6 @@
         [self dismissViewControllerAnimated:YES completion:^{}];
     }
 }
-
-#pragma mark - 设置contentView
-- (void) setUpContentView
-{
-    self.contentView = [UIView new];
-    [self.contentView setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:self.contentView];
-    
-    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.zlNavigationBar.mas_bottom);
-        make.left.equalTo(self.view.mas_left);
-        make.right.equalTo(self.view.mas_right);
-        make.bottom.equalTo(self.view.mas_bottom);
-    }];
-}
-
 
 #pragma mark - ZLBaseViewModel
 

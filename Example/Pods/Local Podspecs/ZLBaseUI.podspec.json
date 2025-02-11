@@ -1,9 +1,9 @@
 {
   "name": "ZLBaseUI",
-  "version": "1.2.0",
+  "version": "1.2.5",
   "summary": "A short description of ZLBaseUI.",
   "description": "ZLBaseUI",
-  "homepage": "https://github.com/ExistOrLive/ZLBaseUI",
+  "homepage": "https://github.com/iFlyCai/ZLBaseUI",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,16 +12,11 @@
     "ExistOrLive": "2068531506@qq.com"
   },
   "source": {
-    "git": "https://github.com/ExistOrLive/ZLBaseUI.git",
-    "tag": "1.2.0"
+    "git": "https://github.com/iFlyCai/ZLBaseUI.git",
+    "tag": "1.2.5"
   },
   "platforms": {
-    "ios": "11.0"
+    "ios": "15.6"
   },
-  "source_files": "ZLBaseUI/Classes/**/*",
-  "dependencies": {
-    "Masonry": [
-
-    ]
-  }
+  "source_files": "ZLBaseUI/Classes/**/*"
 }
