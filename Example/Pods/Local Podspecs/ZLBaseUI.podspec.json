@@ -1,8 +1,8 @@
 {
   "name": "ZLBaseUI",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "summary": "A short description of ZLBaseUI.",
-  "description": "ZLBaseUI",
+  "description": "ZLBaseUI 是一个基于 UIKit 的基础 UI 组件库，封装了常用的 UI 组件，提供更便捷的使用方式，提高开发效率。",
   "homepage": "https://github.com/iFlyCai/ZLBaseUI",
   "license": {
     "type": "MIT",
@@ -13,17 +13,19 @@
   },
   "source": {
     "git": "https://github.com/iFlyCai/ZLBaseUI.git",
-    "tag": "1.2.6"
+    "tag": "1.2.7"
   },
   "platforms": {
     "ios": "15.6"
   },
-  "source_files": "ZLBaseUI/Classes/**/*",
+  "source_files": "ZLBaseUI/Classes/**/*.{h,m}",
+  "public_header_files": "ZLBaseUI/Classes/**/*.h",
   "resource_bundles": {
     "ZLBaseUI": [
-      "ZLBaseUI/Assets/*.png"
+      "ZLBaseUI/Assets/**/*"
     ]
   },
+  "frameworks": "UIKit",
   "dependencies": {
     "RTRootNavigationController": [
       "~> 0.8.1"

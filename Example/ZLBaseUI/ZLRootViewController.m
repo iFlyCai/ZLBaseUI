@@ -1,12 +1,12 @@
 //
-//  ZLViewController.m
-//  ZLBaseUI
+//  ZLRootViewController.m
+//  ZLBaseUI_Example
 //
-//  Created by ExistOrLive on 09/13/2021.
-//  Copyright (c) 2021 ExistOrLive. All rights reserved.
+//  Created by iFlyCai on 2025/2/12.
+//  Copyright © 2025 ExistOrLive. All rights reserved.
 //
 
-#import "ZLViewController.h"
+#import "ZLRootViewController.h"
 
 @interface ZLPageModel : NSObject
 // 展示的控制器名字
@@ -27,19 +27,14 @@
 }
 @end
 
-@interface ZLViewController () <UITableViewDataSource, UITableViewDelegate>
-
-@end
-
-
-@interface ZLViewController ()
-
+@interface ZLRootViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray<ZLPageModel *> *pageModels;
 
+
 @end
 
-@implementation ZLViewController
+@implementation ZLRootViewController
 
 - (void)viewDidLoad
 {

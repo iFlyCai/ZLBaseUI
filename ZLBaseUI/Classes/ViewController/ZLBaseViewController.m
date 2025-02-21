@@ -47,6 +47,7 @@
     self.isDebug = YES;
     // 初始化UI
     [self setBaseUpUI];
+    NSLog(@"当前类类名: %@", NSStringFromClass([self class]));
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -388,7 +389,6 @@
     } else if (notification.name == UIApplicationWillTerminateNotification) {
         [self applicationWillTerminate];
     }
-    
 }
 
 

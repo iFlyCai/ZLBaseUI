@@ -2,7 +2,7 @@ PODS:
   - RTRootNavigationController (0.8.1):
     - RTRootNavigationController/Core (= 0.8.1)
   - RTRootNavigationController/Core (0.8.1)
-  - ZLBaseUI (1.2.6):
+  - ZLBaseUI (1.2.7):
     - RTRootNavigationController (~> 0.8.1)
 
 DEPENDENCIES:
@@ -18,7 +18,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   RTRootNavigationController: ca443783baf6ff65a70c4d21ce0eedbbc1fec1fe
-  ZLBaseUI: be6207aa0253e9e48fc5dd8ff0b51341ab157dad
+  ZLBaseUI: fb71faf50d6f0b51aef668d741ae85b9f433f70e
 
 PODFILE CHECKSUM: 40bcbf8c63fe51eff30f85701900fbf9816e2483
 
